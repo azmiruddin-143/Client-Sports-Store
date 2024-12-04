@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-
+import ReactStars from 'react-stars';
 const Details = () => {
     const detailsLoader = useLoaderData()
     const { _id, image, name, category, description, price, rating, selectedDate, quantity, note } = detailsLoader
@@ -16,7 +16,24 @@ const Details = () => {
                 <div className='space-y-3 my-3'>
                     <h1> <span className='font-semibold'>Category</span> : {category}</h1>
                     <h1><span className='font-semibold'>Price</span> : {price} $</h1>
-                    <h1><span className='font-semibold'>Rating</span> : {rating}</h1>
+                    <div className='flex items-center gap-3'>
+                        <h1>
+                            <span className='font-semibold'>Rating :</span>
+                        </h1>
+                        {
+                            rating && <ReactStars
+                                count={5}
+                                value={rating || 5}
+                                size={24}
+                                activeColor="#ffd700"
+                                edit={false}
+                                color2="#e09d15"
+                                color1='gray'
+                            />
+
+                        }
+
+                    </div>
                     <h1><span className='font-semibold'>Date</span>: {selectedDate} </h1>
                     <h1><span className='font-semibold'>Quantity</span> : {quantity}</h1>
                 </div>

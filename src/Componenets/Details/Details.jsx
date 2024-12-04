@@ -3,13 +3,13 @@ import { useLoaderData } from 'react-router-dom';
 import ReactStars from 'react-stars';
 const Details = () => {
     const detailsLoader = useLoaderData()
-    const { _id, image, name, category, description, price, rating, selectedDate, quantity, note } = detailsLoader
+    const { _id, image, productName, category, description, price, rating, selectedDate, quantity, note } = detailsLoader
 
     return (
         <div className='mx-auto flex justify-center '>
             <div className='max-w-lg'>
                 <img className='rounded-md' src={image} alt="" />
-                <h1 className='text-xl font-semibold my-2'>{name}</h1>
+                <h1 className='text-xl font-semibold my-2'>{productName}</h1>
                 <p className=''> <span className='font-semibold'>Description</span> : {description}</p>
                 {/* <div className="divider ">OR</div> */}
 

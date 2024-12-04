@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from 'sweetalert2'
+import { authContext } from '../AuthProvider/AuthProvider';
 const AddEquipment = () => {
+    const {user} = useContext(authContext)
     const [rating, setRating] = useState("");
     const [selectedDate, setSelectedDate] = useState("");
     const handleDateChange = (date) => {
@@ -24,38 +26,41 @@ const AddEquipment = () => {
         e.preventDefault()
         const from = e.target
         const image = from.image.value
-        const name = from.name.value
+        const productName = from.productname.value
         const category = from.category.value
         const description = from.description.value
         const price = from.price.value
         const quantity = from.quantity.value
+        const email = from.email.value
+        const userName = from.username.value
         const note = from.note.value
-        const equipmentObject = { image, name, category, description, price, rating,selectedDate, quantity, note, }
+        const equipmentObject = { image, productName, category, description, price, rating, selectedDate, quantity, email,userName, note, }
         console.log(equipmentObject);
 
-       
-        fetch("http://localhost:5000/sports",{
+        
+
+        fetch("http://localhost:5000/sports", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-              },
-              body: JSON.stringify(equipmentObject),
+            },
+            body: JSON.stringify(equipmentObject),
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.insertedId ) {
-                Swal.fire({
-                    title: "Post SuccessFull",
-                    text: "Apnar Post Kora Complete oice",
-                    icon: "success"
-                  });
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Post SuccessFull",
+                        text: "Apnar Post Kora Complete oice",
+                        icon: "success"
+                    });
 
-                  from.reset()
+                    from.reset()
 
-                
-            }
-        })
+
+                }
+            })
 
     }
 
@@ -74,10 +79,10 @@ const AddEquipment = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Name</span>
+                            <span className="label-text"> Product Name</span>
                         </label>
 
-                        <input type="text" name='name' placeholder="Enter your item name" className="input input-bordered" required />
+                        <input type="text" name='productname' placeholder="Enter your item name" className="input input-bordered" required />
                     </div>
                 </div>
                 <div className='sm:flex gap-5'>
@@ -146,6 +151,23 @@ const AddEquipment = () => {
                             <span className="label-text">Quantity</span>
                         </label>
                         <input type="number" name='quantity' placeholder="Enter your product quantity" className="input input-bordered" required />
+                    </div>
+                </div>
+
+
+                <div className='sm:flex gap-5'>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input type="email" value={user?.email} name='email' placeholder="Enter your product quantity" className="input input-bordered" required />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">User Name</span>
+                        </label>
+                        <input type="text" 
+                             name='username' value={user?.displayName} placeholder="Enter your product quantity" className="input input-bordered" required />
                     </div>
                 </div>
 

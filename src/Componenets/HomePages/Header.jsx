@@ -158,7 +158,7 @@ const Header = () => {
                                         : ""
                                 }
                             >
-                                My EquipmentList
+                                My Equipment List
                             </NavLink>
                              }
                         </ul>

@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import google from "../../assets/google-icon.png"
 import { IoEyeOff, IoEye } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
 const Register = () => {
-    const { registerUser, googleRegister,setuser} = useContext(authContext)
+    const { registerUser,myProfileUpdate, googleRegister,setuser} = useContext(authContext)
     const [show, setHide] = useState(false)
+    const navigate = useNavigate()
 
     const eyeIconHandler = () => {
         setHide(!show)
@@ -26,7 +27,26 @@ const Register = () => {
             const user = result.user
             setuser(user)
              console.log(user);
+             navigate("/")
+              // update Profile//
+              myProfileUpdate({ displayName: name, photoURL: photourl })
+              .then(() => {
+                  
+                  setuser({ ...result.user, displayName: name, photoURL: photourl })
+                  
+                  toast.success("Registration successful!", {
+                      autoClose: 3000,
+                  });
+                  event.target.reset(); 
+              })
+              .catch((error) => {
+                  toast.error(`Update failed: ${error.message}`, {
+                      autoClose: 3000,
+                  });
+              })
+
            })
+
 
 
         .catch((error) => {

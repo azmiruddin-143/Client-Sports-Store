@@ -26,6 +26,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user
                 setuser(user)
+                setuser({ ...result.user,  photoURL: photourl })
                 navigate(location?.state ? location.state : "/")
                 console.log(user);
             })

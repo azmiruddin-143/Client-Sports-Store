@@ -1,9 +1,21 @@
 import React, { useContext } from 'react';
 import logo from '../../assets/sports-logo.png'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
 const Header = () => {
     const { user, userLogout } = useContext(authContext)
+    const navigate = useNavigate();
+       // Logout Handler
+       const userLogoutHandler = () => {
+        userLogout()
+            .then(() => {
+                navigate("/");
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+
+    };
 
     return (
         <div>
@@ -59,7 +71,7 @@ const Header = () => {
                 <div className="navbar-end">
                     <h1>{user?.email}</h1>
                     {
-                        user ? <Link onClick={userLogout} to={"/login"} ><a className="btn">Logout</a></Link> :
+                        user ? <Link onClick={userLogoutHandler} to={"/login"} ><a className="btn">Logout</a></Link> :
                             <Link to={"/login"} ><a className="btn">Login</a></Link>
                     }
                     {/* <img className='w-[50px]' src={user?.photoURL} alt="" /> */}

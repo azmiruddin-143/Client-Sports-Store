@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Swal from 'sweetalert2'
 const AddEquipment = () => {
     const [rating, setRating] = useState("");
-    console.log(rating);
     const [selectedDate, setSelectedDate] = useState("");
     const handleDateChange = (date) => {
         if (date) {
@@ -20,7 +20,6 @@ const AddEquipment = () => {
         setRating(e.target.value);
     };
 
-
     const addEquipmentForm = (e) => {
         e.preventDefault()
         const from = e.target
@@ -32,8 +31,32 @@ const AddEquipment = () => {
         const quantity = from.quantity.value
         const note = from.note.value
         const equipmentObject = { image, name, category, description, price, rating,selectedDate, quantity, note, }
-
         console.log(equipmentObject);
+
+       
+        fetch("http://localhost:5000/sports",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(equipmentObject),
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.insertedId ) {
+                Swal.fire({
+                    title: "Post SuccessFull",
+                    text: "Apnar Post Kora Complete oice",
+                    icon: "success"
+                  });
+
+                  from.reset()
+
+                
+            }
+        })
+
     }
 
 

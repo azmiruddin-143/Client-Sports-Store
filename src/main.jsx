@@ -11,6 +11,7 @@ import Home from './Componenets/HomePages/Home';
 import AllSports from './Componenets/AllSports/AllSports';
 import AddEquipment from './Componenets/AddEquipment/AddEquipment';
 import MyEquipment from './Componenets/MyEquipment/MyEquipment';
+import Details from './Componenets/Details/Details';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,12 @@ const router = createBrowserRouter([
       {
         path:"/myEquipmentList",
         element : <MyEquipment></MyEquipment>
+      },
+      {
+        path:"/details/:id",
+        element : <Details></Details>,
+        loader : ({params}) => fetch(`http://localhost:5000/sportsall/${params.id}`)
+
       }
     ]
   },

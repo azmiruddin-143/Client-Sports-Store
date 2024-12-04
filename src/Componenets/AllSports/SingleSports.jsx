@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SingleSports = ({ sports, index }) => {
     const { _id, image, name, category, description, price, rating, selectedDate, quantity, note } = sports
@@ -12,7 +13,7 @@ const SingleSports = ({ sports, index }) => {
                     <td>{price}</td>
                     <td>{selectedDate}</td>
                     <td className=''>
-                        <button className='bg-[#c81d1d] py-2 px-5 rounded-md text-white'>View Details</button> 
+                        <Link to={`/details/${_id}`} ><button  className='bg-[#c81d1d] py-2 px-5 rounded-md text-white'>View Details</button> </Link>
                     </td>
                 </tr>
             </tbody>

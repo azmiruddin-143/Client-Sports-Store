@@ -14,6 +14,7 @@ import MyEquipment from './Componenets/MyEquipment/MyEquipment';
 import Details from './Componenets/Details/Details';
 import Login from './Componenets/LoginPage/Login';
 import Register from './Componenets/RegisterPage/Register';
+import AuthProvider from './Componenets/AuthProvider/AuthProvider';
 
 const router = createBrowserRouter([
   {
@@ -22,42 +23,44 @@ const router = createBrowserRouter([
     errorElement: <h1 className='text-red-700 text-4xl'>Error 404</h1>,
     children: [
       {
-        path:"/",
-        element : <Home></Home>,
-        loader : () => fetch('http://localhost:5000/sportslimit')
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch('http://localhost:5000/sportslimit')
       },
       {
-        path:"/allSportsEquipment",
-        element : <AllSports></AllSports>,
-        loader : () => fetch('http://localhost:5000/sportsall')
+        path: "/allSportsEquipment",
+        element: <AllSports></AllSports>,
+        loader: () => fetch('http://localhost:5000/sportsall')
       },
       {
-        path:"/addEquipment",
-        element : <AddEquipment></AddEquipment>
+        path: "/addEquipment",
+        element: <AddEquipment></AddEquipment>
       },
       {
-        path:"/myEquipmentList",
-        element : <MyEquipment></MyEquipment>
+        path: "/myEquipmentList",
+        element: <MyEquipment></MyEquipment>
       },
       {
-        path:"/details/:id",
-        element : <Details></Details>,
-        loader : ({params}) => fetch(`http://localhost:5000/sportsall/${params.id}`)
+        path: "/details/:id",
+        element: <Details></Details>,
+        loader: ({ params }) => fetch(`http://localhost:5000/sportsall/${params.id}`)
       },
       {
-        path:"/register",
-        element : <Register></Register>,
+        path: "/register",
+        element: <Register></Register>,
       },
       {
-        path:"login",
-        element : <Login></Login>,
+        path: "login",
+        element: <Login></Login>,
       }
     ]
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+  <AuthProvider>
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>,
+  </AuthProvider>
 )

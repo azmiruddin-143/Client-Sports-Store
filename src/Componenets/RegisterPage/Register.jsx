@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import google from "../../assets/google-icon.png"
 import { IoEyeOff, IoEye } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import { authContext } from '../AuthProvider/AuthProvider';
 const Register = () => {
-
+    const { registerUser, googleRegister} = useContext(authContext)
     const [show, setHide] = useState(false)
 
     const eyeIconHandler = () => {
@@ -17,7 +19,35 @@ const Register = () => {
         const email = event.target.email.value
         const password = event.target.password.value
         console.log(trams,name,photourl,email,password);
+
+
+        registerUser(email, password)
+        .then((result) => {
+            const user = result.user
+             console.log(user);
+           })
+
+
+        .catch((error) => {
+            console.log(error.message);
+        })
+
+
     }
+
+    const googleRegisterHandler = ()=>{
+        googleRegister()
+            .then((result) => {
+                const user = result.user
+                console.log(user);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            })
+     }
+
+
+
     return (
         <div>
             <div className="sm:my-10 my-5 ">
@@ -71,8 +101,8 @@ const Register = () => {
                             </div>
 
                             <div className="divider">OR</div>
-                            <div  className='mx-auto'>
-                                <img className='w-[30px]'  alt="" />
+                            <div onClick={googleRegisterHandler}  className='mx-auto'>
+                                <img className='w-[30px]' src={google}  alt="" />
                             </div>
                             <h1 className='text-lg text-center'>Already a user ? <Link to="/login" className='text-[#e09d15]'>Login</Link></h1>
                         </form>

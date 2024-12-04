@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/sports-logo.png'
-import { Link, Links, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { authContext } from '../AuthProvider/AuthProvider';
 const Header = () => {
+    const { user, userLogout } = useContext(authContext)
+
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -42,15 +45,24 @@ const Header = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu text-lg menu-horizontal px-1">
-                       <NavLink to={"/"} ><li><a>Home</a></li></NavLink>
-                       <NavLink to={"/allSportsEquipment"} ><li><a>All Sports Equipment</a></li></NavLink>
-                       <NavLink to={"/addEquipment"} ><li><a>Add Equipment</a></li></NavLink>
-                       <NavLink to={"/myEquipmentList"} ><li><a>My Equipment List</a></li></NavLink>
-                       
+                        <NavLink to={"/"} ><li><a>Home</a></li></NavLink>
+                        <NavLink to={"/allSportsEquipment"} ><li><a>All Sports Equipment</a></li></NavLink>
+                        {
+                            user && <NavLink to={"/addEquipment"} ><li><a>Add Equipment</a></li></NavLink>
+                        }
+                        {
+                            user && <NavLink to={"/myEquipmentList"} ><li><a>My Equipment List</a></li></NavLink>
+                        }
+
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to={"/login"} ><a className="btn">Login</a></Link>
+                    <h1>{user?.email}</h1>
+                    {
+                        user ? <Link onClick={userLogout} to={"/login"} ><a className="btn">Logout</a></Link> :
+                            <Link to={"/login"} ><a className="btn">Login</a></Link>
+                    }
+                    {/* <img className='w-[50px]' src={user?.photoURL} alt="" /> */}
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { IoEyeOff, IoEye } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
 const Register = () => {
-    const { registerUser, googleRegister} = useContext(authContext)
+    const { registerUser, googleRegister,setuser} = useContext(authContext)
     const [show, setHide] = useState(false)
 
     const eyeIconHandler = () => {
@@ -24,6 +24,7 @@ const Register = () => {
         registerUser(email, password)
         .then((result) => {
             const user = result.user
+            setuser(user)
              console.log(user);
            })
 
@@ -39,6 +40,7 @@ const Register = () => {
         googleRegister()
             .then((result) => {
                 const user = result.user
+                setuser(user)
                 console.log(user);
             })
             .catch((error) => {

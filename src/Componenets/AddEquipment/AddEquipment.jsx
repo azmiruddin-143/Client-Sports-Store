@@ -4,8 +4,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from 'sweetalert2'
 import { authContext } from '../AuthProvider/AuthProvider';
 const AddEquipment = () => {
-    const {user} = useContext(authContext)
-    const [rating, setRating] = useState("");
+    const { user } = useContext(authContext)
+    // const [rating, setRating] = useState("");
     const [selectedDate, setSelectedDate] = useState("");
     const handleDateChange = (date) => {
         if (date) {
@@ -18,9 +18,9 @@ const AddEquipment = () => {
         }
     };
 
-    const handleRatingChange = (e) => {
-        setRating(e.target.value);
-    };
+    // const handleRatingChange = (e) => {
+    //     setRating(e.target.value);
+    // };
 
     const addEquipmentForm = (e) => {
         e.preventDefault()
@@ -30,11 +30,12 @@ const AddEquipment = () => {
         const category = from.category.value
         const description = from.description.value
         const price = from.price.value
+        const rating = from.rating.value
         const quantity = from.quantity.value
         const email = from.email.value
         const userName = from.username.value
         const note = from.note.value
-        const equipmentObject = { image, productName, category, description, price, rating, selectedDate, quantity, email,userName, note, }
+        const equipmentObject = { image, productName, category, description, price, rating, selectedDate, quantity, email, userName, note, }
         console.log(equipmentObject);
 
         
@@ -57,6 +58,10 @@ const AddEquipment = () => {
                     });
 
                     from.reset()
+                    setSelectedDate("");
+                    from.productname.value = ""; 
+                    from.category.value = ""; 
+                    from.rating.value = "";
 
 
                 }
@@ -82,7 +87,16 @@ const AddEquipment = () => {
                             <span className="label-text"> Product Name</span>
                         </label>
 
-                        <input type="text" name='productname' placeholder="Enter your item name" className="input input-bordered" required />
+                        <select name="productname" className="select select-bordered" required>
+                            <option disabled selected>
+                                Select a Product Name
+                            </option>
+                            <option value="Football">Football</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Cricket">Cricket</option>
+                            <option value="Hockey">Hockey</option>
+                        </select>
                     </div>
                 </div>
                 <div className='sm:flex gap-5'>
@@ -90,7 +104,16 @@ const AddEquipment = () => {
                         <label className="label">
                             <span className="label-text">Category</span>
                         </label>
-                        <input type="text" name='category' placeholder="Enter your Category name" className="input input-bordered" required />
+                        <select name="category" className="select select-bordered" required>
+                            <option disabled selected>
+                                Select a Category
+                            </option>
+                            <option value="Football">Football</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Cricket">Cricket</option>
+                            <option value="Hockey">Hockey</option>
+                        </select>
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
@@ -111,22 +134,15 @@ const AddEquipment = () => {
                             <span className="label-text">Rating</span>
                         </label>
                         {/* <input type="text" name='rating' placeholder="Enter your rating" className="input input-bordered" required /> */}
-                        <select
-                            onChange={handleRatingChange}
-                            required
-                            value={rating}
-                            style={{
-                                padding: "11px 11px",
-                                fontSize: "16px",
-                                border: "1px solid #ccc",
-                                borderRadius: "5px",
-                            }}
-                        >
-                            <option value="">Select Rating</option>
+                        <select name="rating" className="select select-bordered" required>
+                            <option disabled selected>
+                                Select a rating
+                            </option>
                             <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="2.5">2.2</option>
+                            <option value="3.8">3.8</option>
                             <option value="4">4</option>
+                            <option value="4.2">4.2</option>
                             <option value="5">5</option>
                         </select>
                     </div>
@@ -166,8 +182,8 @@ const AddEquipment = () => {
                         <label className="label">
                             <span className="label-text">User Name</span>
                         </label>
-                        <input type="text" 
-                             name='username' value={user?.displayName} placeholder="Enter your product quantity" className="input input-bordered" required />
+                        <input type="text"
+                            name='username' value={user?.displayName} placeholder="Enter your product quantity" className="input input-bordered" required />
                     </div>
                 </div>
 
@@ -194,3 +210,26 @@ const AddEquipment = () => {
 };
 
 export default AddEquipment;
+
+
+
+
+
+{/* <select
+                            onChange={handleRatingChange}
+                            required
+                            value={rating}
+                            style={{
+                                padding: "11px 11px",
+                                fontSize: "16px",
+                                border: "1px solid #ccc",
+                                borderRadius: "5px",
+                            }}
+                        >
+                            <option value="">Select Rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select> */}

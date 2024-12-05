@@ -12,7 +12,7 @@ const Products = () => {
             
             </Marquee> */}
             <h1>{productLoader.length}</h1>
-            <div className='grid grid-cols-4 justify-center gap-7 mx-9'>
+            <div className='grid grid-cols-3 place-items-center mx-auto gap-7 max-w-7xl'>
                 {
                     productLoader.map(product => <SingleProduct key={product._id} product={product} ></SingleProduct>)
                 }

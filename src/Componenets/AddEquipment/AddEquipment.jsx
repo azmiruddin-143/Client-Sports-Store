@@ -35,7 +35,7 @@ const AddEquipment = () => {
         const email = from.email.value
         const userName = from.username.value
         const note = from.note.value
-        const equipmentObject = { image, productName, category, description, price, rating, selectedDate, quantity, email, userName, note, }
+        const equipmentObject = { image, productName,createdAt: new Date(),  category, description, price, rating, selectedDate, quantity, email, userName, note, }
         console.log(equipmentObject);
 
         

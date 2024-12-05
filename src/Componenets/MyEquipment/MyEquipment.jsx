@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { authContext } from '../AuthProvider/AuthProvider';
 import SingleEquipment from './SingleEquipment';
+import { Link } from 'react-router-dom';
 
 const MyEquipment = () => {
     const { user } = useContext(authContext)
@@ -8,7 +9,8 @@ const MyEquipment = () => {
     const [equipment, setEquipment] = useState([]);
     // const [dilet,setDilet] = useState(equipment)
     // console.log(dilet);
-  
+
+
     const userEmail = user.email // Replace with actual logged-in user's email
 
     useEffect(() => {
@@ -28,8 +30,8 @@ const MyEquipment = () => {
     }, [userEmail]);
 
 
-     // Handle delete function
-     const handleDelete = (id) => {
+    // Handle delete function
+    const handleDelete = (id) => {
         fetch(`http://localhost:5000/myequipment/${id}`, {
             method: "DELETE",
         })
@@ -47,13 +49,26 @@ const MyEquipment = () => {
 
     return (
         <div>
-            <h1>{equipment.length}</h1>
 
-            <div className='grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 place-items-center'>
-                {
-                  equipment.map(equipment => <SingleEquipment key={equipment._id} onDelete ={handleDelete} equipment ={equipment} ></SingleEquipment>)
-                }
-            </div>
+            {
+                equipment.length === 0 ?
+
+                    <div className="flex justify-center my-5">
+                        <div>
+                            <h1 className='text-4xl py-3'>No Data Found ?</h1>                          
+                            <Link to={'/addequipment'} > <button className='py-2 my-3 px-6 bg-[#2e9ab5] rounded-md'>Add Equipment</button> </Link>
+                        </div>
+                    </div>
+
+                    :
+                    <div className='grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 place-items-center'>
+                        {
+                            equipment.map(equipment => <SingleEquipment key={equipment._id} onDelete={handleDelete} equipment={equipment} ></SingleEquipment>)
+                        }
+                    </div>
+            }
+
+
         </div>
     );
 };

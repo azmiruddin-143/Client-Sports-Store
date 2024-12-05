@@ -8,7 +8,7 @@ const SingleProduct = ({ product }) => {
     const discountPrice = parseInt(price) + 200;
     return (
         <div class="max-w-md p-4">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="bg-white rounded-lg p-2 shadow-lg overflow-hidden">
                 {/* <!-- Discount Badge --> */}
                 <div class="relative">
                     <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold py-1 px-2 rounded-full">
@@ -17,10 +17,10 @@ const SingleProduct = ({ product }) => {
                 </div>
 
                 {/* <!-- Product Image --> */}
-                <img class="w-[400px] h-64 object-cover" src={image} alt="Chek Trouser" />
+                <img class="w-[400px] h-64 object-cover rounded-md" src={image} alt="Chek Trouser" />
 
                 {/* <!-- Product Info --> */}
-                <div class="p-4">
+                <div class="p-2">
                     <h2 class="text-lg font-semibold text-gray-800">{productName}</h2>
                     <p class="text-sm text-gray-600">{category}</p>
 

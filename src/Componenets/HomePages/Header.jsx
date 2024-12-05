@@ -94,8 +94,8 @@ const Header = () => {
                             )}
                         </div>
                         <div>
-                            <h1 className={`${isBlurred && "text-white"} sm:text-3xl text-base pl-2 lg:pl-0 lg:text-2xl xl:text-4xl text-[#3c4483] font-bold`}>
-                            Sports <span className="text-[#e09d15] relative sm:right-2 lg:right-1 xl:right-2 right-1 font-bold"> Equipment Store</span>
+                            <h1 className={`${isBlurred && "text-white"} sm:text-3xl text-base pl-2 lg:pl-0 lg:text-2xl xl:text-4xl text-[#3c4483] font-bold`}> Sports 
+                             <span className="text-[#e09d15] relative sm:right-2 lg:right-1 xl:right-2 right-1 font-bold"> Sphere</span>
                             </h1>
                         </div>
                     </div>

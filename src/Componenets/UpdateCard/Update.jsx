@@ -1,12 +1,26 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { authContext } from '../AuthProvider/AuthProvider';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Swal from 'sweetalert2'
-import { authContext } from '../AuthProvider/AuthProvider';
-const AddEquipment = () => {
+import { useLoaderData, useNavigate } from 'react-router-dom';
+
+const Update = () => {
+    const updateLoader = useLoaderData()
+    const { _id, image, productName, category, selectedDates, description, price, rating, quantity, note } = updateLoader
     const { user } = useContext(authContext)
-    // const [rating, setRating] = useState("");
-    const [selectedDate, setSelectedDate] = useState("");
+    const navigate = useNavigate()
+ 
+
+    const [selectedDate, setSelectedDate] = useState(null);
+
+    useEffect(() => {
+        const defaultDateFromDB = selectedDates; 
+        if (defaultDateFromDB) {
+            const formattedDate = new Date(defaultDateFromDB); 
+            setSelectedDate(formattedDate);
+        }
+    }, []);
+
     const handleDateChange = (date) => {
         if (date) {
             const formattedDate = date.toLocaleDateString("en-US", {
@@ -14,13 +28,9 @@ const AddEquipment = () => {
                 month: "2-digit",
                 year: "2-digit",
             });
-            setSelectedDate(formattedDate); // Update state with formatted date
+            setSelectedDate(formattedDate); // Directly store Date object
         }
     };
-
-    // const handleRatingChange = (e) => {
-    //     setRating(e.target.value);
-    // };
 
     const addEquipmentForm = (e) => {
         e.preventDefault()
@@ -28,20 +38,15 @@ const AddEquipment = () => {
         const image = from.image.value
         const productName = from.productname.value
         const category = from.category.value
-        const description = from.description.value
         const price = from.price.value
         const rating = from.rating.value
-        const quantity = from.quantity.value
         const email = from.email.value
         const userName = from.username.value
-        const note = from.note.value
-        const equipmentObject = { image, productName, category, description, price, rating, selectedDate, quantity, email, userName, note, }
+        const equipmentObject = { image, productName, category, price, rating, selectedDate, email, userName, }
         console.log(equipmentObject);
 
-        
-
-        fetch("http://localhost:5000/sports", {
-            method: "POST",
+        fetch(`http://localhost:5000/myequipment/${_id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -50,29 +55,14 @@ const AddEquipment = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                if (data.insertedId) {
-                    Swal.fire({
-                        title: "Post SuccessFull",
-                        text: "Apnar Post Kora Complete oice",
-                        icon: "success"
-                    });
-
-                    from.reset()
-                    setSelectedDate("");
-                    from.productname.value = ""; 
-                    from.category.value = ""; 
-                    from.rating.value = "";
-
-
+                if (data.modifiedCount > 0) {
+                    navigate("/")
                 }
             })
 
+
     }
-
-
-
     return (
-
         <div className='my-10 mx-10 '>
             <form onSubmit={addEquipmentForm} className='max-w-4xl mx-auto' action="">
                 <div className=' sm:flex gap-5'>
@@ -80,26 +70,15 @@ const AddEquipment = () => {
                         <label className="label">
                             <span className="label-text">Image</span>
                         </label>
-                        <input type="text" name='image' placeholder="Enter your image url" className="input input-bordered" required />
+                        <input type="text" name='image' defaultValue={image} placeholder="Enter your image url" className="input input-bordered" required />
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text"> Product Name</span>
                         </label>
-                        <input type="text" name='productname' placeholder="Enter your productname" className="input input-bordered" required />
-                        {/* <select name="productname" className="select select-bordered" required>
-                            <option disabled selected>
-                                Select a Product Name
-                            </option>
-                            <option value="Football">Nike Flight</option>
-                            <option value="Basketball">Wilson Evolution Indoor</option>
-                            <option value="Tennis">Babolat Pure Drive</option>
-                            <option value="Cricket">Kookaburra Kahuna</option>
-                            <option value="Football">Nike Flight</option>
-                            <option value="Tennis">Yonex EZONE 98</option>
-                            <option value="Basketball">Molten GG7X</option>
-                            <option value="Cricket">Kookaburra Kahuna</option>
-                        </select> */}
+                        <input type="text" name='productname' defaultValue={productName} placeholder="Enter your productname" className="input input-bordered" required />
+
+
                     </div>
                 </div>
                 <div className='sm:flex gap-5'>
@@ -107,7 +86,7 @@ const AddEquipment = () => {
                         <label className="label">
                             <span className="label-text">Category</span>
                         </label>
-                        <select name="category" className="select select-bordered" required>
+                        <select name="category" className="select select-bordered" defaultValue={category} required>
                             <option disabled selected>
                                 Select a Category
                             </option>
@@ -120,24 +99,19 @@ const AddEquipment = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Description</span>
+                            <span className="label-text">Price</span>
                         </label>
-                        <input type="text" name='description' placeholder="Enter your description" className="input input-bordered" required />
+                        <input type="text" name='price' defaultValue={price} placeholder="Enter your product price" className="input input-bordered" required />
                     </div>
                 </div>
                 <div className='sm:flex gap-5'>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Price</span>
-                        </label>
-                        <input type="number" name='price' placeholder="Enter your product price" className="input input-bordered" required />
-                    </div>
+
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Rating</span>
                         </label>
                         {/* <input type="text" name='rating' placeholder="Enter your rating" className="input input-bordered" required /> */}
-                        <select name="rating" className="select select-bordered" required>
+                        <select name="rating" className="select select-bordered" defaultValue={rating} required>
                             <option disabled selected>
                                 Select a rating
                             </option>
@@ -149,30 +123,22 @@ const AddEquipment = () => {
                             <option value="5">5</option>
                         </select>
                     </div>
-                </div>
-                <div className='sm:flex gap-5'>
+
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Delivery</span>
                         </label>
-                        {/* <input type="text" name='delivery' placeholder="Enter your delivery time" className="input input-bordered" required /> */}
+
                         <DatePicker
                             selected={selectedDate}
-                            required
-                            onChange={handleDateChange}
-                            dateFormat="MM/dd/yy" // Show date in this format in UI
+                            required // Use the Date object from state
+                            onChange={handleDateChange} // Update state when a new date is selected
+                            dateFormat="MM/dd/yy" // Show date in this format
                             placeholderText="Select Date"
                             className="input input-bordered w-full"
                         />
                     </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Quantity</span>
-                        </label>
-                        <input type="number" name='quantity' placeholder="Enter your product quantity" className="input input-bordered" required />
-                    </div>
                 </div>
-
 
                 <div className='sm:flex gap-5'>
                     <div className="form-control w-full">
@@ -190,31 +156,13 @@ const AddEquipment = () => {
                     </div>
                 </div>
 
-                <div className="form-control w-full">
-                    <label className="label">
-                        <span className="label-text">Customization Note</span>
-                    </label>
-                    <textarea
-                        placeholder="Write something here..."
-                        required
-                        name='note'
-                        rows="5"
-                        className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    ></textarea>
-                </div>
 
                 <div className='w-full'>
-                    <button className='bg-[#1d7fb4] text-white font-bold w-full py-2 px-3 my-5 rounded-lg'>Add Equipment</button>
+                    <button className='bg-[#1d7fb4] text-white font-bold w-full py-2 px-3 my-5 rounded-lg'>Update Equipment</button>
                 </div>
             </form>
         </div>
-
     );
 };
 
-export default AddEquipment;
-
-
-
-
-
+export default Update;

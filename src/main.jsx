@@ -16,6 +16,7 @@ import Login from './Componenets/LoginPage/Login';
 import Register from './Componenets/RegisterPage/Register';
 import AuthProvider from './Componenets/AuthProvider/AuthProvider';
 import PrivateRoot from './Componenets/PrivateRoot/PrivateRoot';
+import Update from './Componenets/UpdateCard/Update';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },
+      {
+        path: "/update/:id",
+        element: <Update></Update>,
+        loader: ({ params }) => fetch(`http://localhost:5000/myequipment/${params.id}`)
       }
     ]
   },

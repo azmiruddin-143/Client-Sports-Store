@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactStars from 'react-stars';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
-const SingleEquipment = ({ equipment }) => {
+const SingleEquipment = ({ equipment,onDelete }) => {
     const { _id, image, productName, category, description, price, rating, selectedDate, quantity, note } = equipment
 
-    const diletCard = (_id) =>{
-        console.log("dilet",_id);
-    }
+   
     return (
         <div>
             <div class="p-4">
-                <div class="max-w-sm  border border-gray-200 rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
+                <div class="max-w-sm    border border-gray-200 rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
                     {/* <!-- Badge --> */}
                     <div class="relative">
                         <div class="absolute top-2 left-2 bg-purple-100 text-purple-600 text-xs font-semibold py-1 px-2 rounded-full">
@@ -47,11 +46,11 @@ const SingleEquipment = ({ equipment }) => {
 
                         {/* <!-- Buttons --> */}
                         <div class="flex items-center justify-between">
-                            <button class="px-4 py-2 flex items-center gap-3 text-gray-600 border border-gray-400 rounded-md hover:bg-gray-100">
+                            <Link to={`/update/${_id}`} ><button class="px-4 py-2 flex items-center gap-3 text-gray-600 border border-gray-400 rounded-md hover:bg-gray-100">
                                 Update
                                 <FaEdit size={20} />
-                            </button>
-                            <button onClick={()=>diletCard(_id)} class="px-4 py-2 flex items-center gap-3 bg-purple-500 text-white font-semibold rounded-md hover:bg-purple-600">
+                            </button></Link>
+                            <button onClick={()=>onDelete(_id)} class="px-4 py-2 flex items-center gap-3 bg-purple-500 text-white font-semibold rounded-md hover:bg-purple-600">
                                 Dilet <FaTrashAlt size={16} />
                             </button>
                         </div>
@@ -61,5 +60,7 @@ const SingleEquipment = ({ equipment }) => {
         </div>
     );
 };
+
+
 
 export default SingleEquipment;

@@ -10,7 +10,7 @@ const SingleSports = ({ sports, index }) => {
                     <th>{index + 1}</th>
                     <td>{productName}</td>
                     <td>{category} </td>
-                    <td>{price}</td>
+                    <td> $ {price}</td>
                     <td>{selectedDate}</td>
                     <td className=''>
                         <Link to={`/details/${_id}`} ><button  className='bg-[#c81d1d] py-2 px-5 rounded-md text-white'>View Details</button> </Link>

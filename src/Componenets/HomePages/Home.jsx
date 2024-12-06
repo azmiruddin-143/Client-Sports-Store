@@ -20,8 +20,8 @@ const Home = () => {
             <Products></Products>
             <PerformanceHub></PerformanceHub>
             <TrendingProducts></TrendingProducts>
-            {/* <AthleticIntro></AthleticIntro> */}
-            {/* <CustomerBenefits></CustomerBenefits> */}
+            <AthleticIntro></AthleticIntro>
+            <CustomerBenefits></CustomerBenefits>
         </div>
     );
 };

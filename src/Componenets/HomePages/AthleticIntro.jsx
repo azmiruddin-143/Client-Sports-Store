@@ -4,7 +4,7 @@ import { BsCheckCircleFill } from "react-icons/bs"; // Check Icon
 import heroimage from "../../assets/hero-image.jpg"
 const AthleticIntro = () => {
     return (
-        <section className="flex flex-col md:flex-row md:justify-between px-6 md:px-12 py-12 mx-24">
+        <section className="flex flex-col md:flex-row md:justify-between px-6 lg:px-12 py-12  xl:mx-16 2xl:mx-24">
         {/* Left Side: Image with Play Button */}
         <div className="relative w-full md:w-1/2 flex justify-center">
           <img
@@ -21,11 +21,11 @@ const AthleticIntro = () => {
         </div>
   
         {/* Right Side: Content */}
-        <div className="mt-8 md:mt-0 md:w-1/2 md:pl-12 text-center md:text-left">
-          <h1 className="text-3xl md:text-4xl xl:text-6xl w-8/12 font-bold text-gray-900 leading-snug">
-            Elevate Your Game, Gear Up with Passion
+        <div className="mt-8 md:mt-0 md:w-1/2 md:pl-12 sm:text-center md:text-left">
+          <h1 className="lg:text-4xl text-2xl  leading-normal xl:text-6xl 2xl:w-8/12 font-bold text-gray-700 ">
+          Elevate Your Sports, Gear Up with Passion
           </h1>
-          <p className="text-gray-500 text-lg w-10/12 mt-4">
+          <p className="text-gray-500 text-lg lg:w-10/12 mt-4">
             Driven by the belief that the right gear can elevate performance, our
             mission is to empower athletes to reach new heights in their
             respective sports.

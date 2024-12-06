@@ -54,7 +54,7 @@ const Header = () => {
             className={`sticky top-0 w-full z-40 transition-all duration-300 ${isBlurred ? "bg-[#9dc92395] backdrop-blur-md " : "bg-base-200"
                 }`}
         >
-            <div className="2xl:mx-36 xl:mx-24 sm:mx-4 ">
+            <div className="2xl:mx-32 xl:mx-24 sm:mx-4 ">
                 <div className="navbar p-1">
                     <div className="navbar-start">
                         <div className="dropdown">
@@ -108,7 +108,7 @@ const Header = () => {
                     </div>
 
                     <div className="navbar-center  xl:ml-10 2xl:ml-0 hidden lg:flex">
-                        <ul className={`${isBlurred ? "xl:text-lg text-md text-black flex gap-3 sm:gap-8" : "xl:text-lg text-md text-black flex gap-3 sm:gap-8"}`}>
+                        <ul className={`${isBlurred ? "xl:text-lg text-md text-black flex gap-3 sm:gap-6 xl:gap-8" : "xl:text-lg text-md text-black flex gap-3 sm:gap-6 xl:gap-8"}`}>
                             <NavLink
                                 to="/"
                                 className={({ isActive }) =>

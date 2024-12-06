@@ -17,10 +17,10 @@ const TrendingProducts = () => {
       })
   }, [])
   return (
-    <div className='md:my-28 my-14 bg-gray-100'>
+    <div className='md:my-28  my-14 bg-gray-100'>
       <h1 className='text-center xl::text-4xl lg:text-3xl sm:text-2xl   relative -top-7 text-white bg-[#9dc923] py-2 px-5 w-fit mx-auto'>Top Trending</h1>
 
-      <div className=" lg:py-20  2xl:mx-36 xl:mx-28 mx-4 lg:mx-10 ">
+      <div className=" lg:py-20 pb-10 2xl:mx-36 xl:mx-28 mx-4 lg:mx-10 ">
         <Swiper
           modules={[Navigation, Autoplay]}
           navigation

@@ -6,6 +6,7 @@ import SportsCategory from './SportsCategory';
 import PerformanceHub from './PerformanceHub';
 import TrendingProducts from './TrendingProducts';
 import AthleticIntro from './AthleticIntro';
+import CustomerBenefits from './CustomerBenefits';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <PerformanceHub></PerformanceHub>
             <TrendingProducts></TrendingProducts>
             <AthleticIntro></AthleticIntro>
+            <CustomerBenefits></CustomerBenefits>
         </div>
     );
 };

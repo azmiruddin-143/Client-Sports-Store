@@ -204,7 +204,7 @@ const AddEquipment = () => {
                 </div>
 
                 <div className='w-full'>
-                    <button className='bg-[#1d7fb4] text-white font-bold w-full py-2 px-3 my-5 rounded-lg'>Add Equipment</button>
+                    <button className='bg-[#baf120] text-black font-bold w-full py-2 px-3 my-5 rounded-lg'>Add Equipment</button>
                 </div>
             </form>
         </div>

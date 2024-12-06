@@ -22,10 +22,10 @@ const AllSports = () => {
 
             {
                 !isSorted ? <div className='flex mx-auto my-4 justify-center'>
-                    <button onClick={handleSort} className='bg-[#0ba915] py-2 px-6 rounded-md'>Sort all price</button>
+                    <button onClick={handleSort} className='bg-[#baf120] py-2 px-6 rounded-md'>Sort all price</button>
                 </div> :
                     <div className='flex mx-auto my-4 justify-center'>
-                        <button onClick={handleDefault} className='bg-[#0ba915] py-2 px-6 rounded-md'>Default Price</button>
+                        <button onClick={handleDefault} className='bg-[#baf120] py-2 px-6 rounded-md'>Default Price</button>
                     </div>
 
             }

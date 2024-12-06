@@ -21,7 +21,7 @@ const SingleSports = ({ sports, index }) => {
                 <td> $ {price}</td>
                 <td>{selectedDate}</td>
                 <td className=''>
-                    <Link to={`/details/${_id}`} ><button className='bg-[#c81d1d] py-2 px-5 rounded-md text-white'>View Details</button> </Link>
+                    <Link to={`/details/${_id}`} ><button className='bg-[#baf120] py-2 px-5 rounded-md text-black'>View Details</button> </Link>
                 </td>
             </tr>
         </tbody>

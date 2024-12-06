@@ -10,13 +10,13 @@ const SingleEquipment = ({ equipment,onDelete }) => {
     return (
         <div>
             <div class="p-4">
-                <div class="max-w-sm    border border-gray-200 rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
+                <div class="max-w-sm  border border-gray-200 rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
                     {/* <!-- Badge --> */}
                     <div class="relative">
-                        <div class="absolute top-2 left-2 bg-purple-100 text-purple-600 text-xs font-semibold py-1 px-2 rounded-full">
+                        <div class="absolute top-2 left-2 bg-[white] text-[#020202] text-xs font-semibold py-1 px-2 rounded-full">
                             {category}
                         </div>
-                        <img className='rounded-md'
+                        <img className='w-[400px] h-64 object-cover rounded-md'
                             src={image}
                         />
                     </div>
@@ -50,7 +50,7 @@ const SingleEquipment = ({ equipment,onDelete }) => {
                                 Update
                                 <FaEdit size={20} />
                             </button></Link>
-                            <button onClick={()=>onDelete(_id)} class="px-4 py-2 flex items-center gap-3 bg-purple-500 text-white font-semibold rounded-md hover:bg-purple-600">
+                            <button onClick={()=>onDelete(_id)} class="px-4 py-2 flex items-center gap-3 bg-[#baf120] text-black font-semibold rounded-md">
                                 Dilet <FaTrashAlt size={16} />
                             </button>
                         </div>

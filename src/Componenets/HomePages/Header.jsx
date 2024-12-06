@@ -213,7 +213,9 @@ const Header = () => {
                                 </button>
                             ) : (
                                 <Link to="/login">
-                                    <button className="bg-[#baf120] text-black font-semibold text-base sm:text-lg py-1 px-2 sm:py-2 sm:px-6 rounded-lg">
+                                    <button className={`${isBlurred && 'bg-[white] text-black text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg'
+                                       
+                                    } bg-[#baf120] text-black text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg`}>
                                         Login
                                     </button>
                                 </Link>

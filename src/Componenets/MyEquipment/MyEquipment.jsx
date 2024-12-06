@@ -94,8 +94,6 @@ const handleDelete = (id) => {
 
 
 
-
-
     return (
         <div>
 
@@ -110,7 +108,7 @@ const handleDelete = (id) => {
                     </div>
 
                     :
-                    <div className='grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 place-items-center'>
+                    <div className='max-w-7xl sm:grid-cols-2 my-12 mx-auto grid xl:grid-cols-3 lg:grid-cols-3 grid-cols-1 place-items-center'>
                         {
                             equipment.map(equipment => <SingleEquipment key={equipment._id} onDelete={handleDelete} equipment={equipment} ></SingleEquipment>)
                         }

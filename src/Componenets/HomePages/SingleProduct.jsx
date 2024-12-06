@@ -11,7 +11,7 @@ const SingleProduct = ({ product }) => {
             <div class="bg-white rounded-lg p-2 shadow-lg overflow-hidden">
                 {/* <!-- Discount Badge --> */}
                 <div class="relative">
-                    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold py-1 px-2 rounded-full">
+                    <div class="absolute top-2 left-2 bg-[#9dc923] text-black text-xs font-semibold py-1 px-2 rounded-full">
                         Latest
                     </div>
                 </div>
@@ -49,7 +49,7 @@ const SingleProduct = ({ product }) => {
                     </div>
 
                     {/* <!-- Order Button --> */}
-                    <Link to={`/details/${_id}`} > <button class="mt-4 w-full py-2 px-4 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600">
+                    <Link to={`/details/${_id}`} > <button class="mt-4 w-full py-2 px-4 bg-[#9dc923] text-[black] font-semibold rounded-md">
                         View Details
                     </button></Link>
                 </div>

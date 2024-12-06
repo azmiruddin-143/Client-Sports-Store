@@ -58,11 +58,11 @@ const Banner = () => {
             </Swiper>
 
 
-            <div className="swiper-button-prev bg-[white] cursor-pointer  rounded-full  px-[22px] md:p-6 flex justify-center items-center">
+            <div className="swiper-button-prev bg-[#9dc923] cursor-pointer  rounded-full  px-[22px] md:p-6 flex justify-center items-center">
                 <FaArrowLeft />
             </div>
 
-            <div className="swiper-button-next  cursor-pointer bg-[white] rounded-full px-[22px] w-fit  md:p-6 flex justify-center items-center">
+            <div className="swiper-button-next  cursor-pointer bg-[#9dc923] rounded-full px-[22px] w-fit  md:p-6 flex justify-center items-center">
                 <FaArrowRight />
             </div>
 

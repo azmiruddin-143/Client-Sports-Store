@@ -45,3 +45,19 @@
     opacity: var(--swiper-pagination-bullet-opacity, 1);
     background: #3c4483; 
 }
+
+
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+    padding: 5px 10px;
+    background-color: #9dc923;
+    color: white;
+
+}
+
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    content: 'prev';
+   background-color: #9dc923;
+   padding: 5px 10px;
+   color: white;
+}

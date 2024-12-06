@@ -15,7 +15,7 @@ const PerformanceHub = () => {
                 />
                 <div className="absolute top-6 left-6 bg-white px-4 py-2 rounded-lg">
                     <p className="text-lg font-bold">Elevate Your Run with Our Premium Accessories</p>
-                    <button className="mt-4 bg-lime-500 text-white px-4 py-2 rounded hover:bg-lime-600">
+                    <button className="mt-4 bg-[#9dc923] text-white px-4 py-2 rounded hover:bg-lime-600">
                         Shop Now
                     </button>
                 </div>
@@ -50,7 +50,7 @@ const PerformanceHub = () => {
                 />
                 <div className="absolute top-32 left-16 bg-[#00000055] px-4 py-2 rounded-lg">
                     <p className="text-lg font-bold text-white">SwiftStrike Styles High-Performance</p>
-                    <button className="mt-4 bg-lime-500 text-white px-4 py-2 rounded hover:bg-lime-600">
+                    <button className="mt-4 bg-[#9dc923] text-white px-4 py-2 rounded hover:bg-lime-600">
                         Shop Now
                     </button>
                 </div>

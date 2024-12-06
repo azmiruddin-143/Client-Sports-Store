@@ -4,6 +4,7 @@ import Products from './Products';
 import TextSlider from './TextSlider';
 import SportsCategory from './SportsCategory';
 import PerformanceHub from './PerformanceHub';
+import TrendingProducts from './TrendingProducts';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <SportsCategory></SportsCategory>
             <Products></Products>
             <PerformanceHub></PerformanceHub>
+            <TrendingProducts></TrendingProducts>
         </div>
     );
 };

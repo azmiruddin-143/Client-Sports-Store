@@ -2,21 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .active {
-  background-color: rgb(8, 8, 147);
-  color : white;
-  border-radius: 10px;
-
+    color: #e09d15;
+    border-bottom: 1px solid #e09d15 ;
+    width: fit-content;
 }
-
 
 
 @import "swiper/css";
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 .active {
-    color: #e09d15;
-    border-bottom: 1px solid #e09d15 ;
+    color: #9dc923;
+    border-bottom: 1px solid #9dc923 ;
     width: fit-content;
 }
 

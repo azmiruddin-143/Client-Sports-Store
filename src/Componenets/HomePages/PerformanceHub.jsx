@@ -3,6 +3,7 @@ import TennisbatBaner from "../../assets/sibgle-tannis-2.png"
 import singletannis from "../../assets/single-tannis-personjpg.jpg"
 import singlefootball from "../../assets/single-football.jpg"
 import singleBasketball from "../../assets/single-Basketball-person.jpg"
+
 const PerformanceHub = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 my-28 mx-32">
@@ -13,6 +14,7 @@ const PerformanceHub = () => {
                     alt="Tennis"
                     className="w-full h-96 object-cover"
                 />
+
                 <div className="absolute top-6 left-6 bg-white px-4 py-2 rounded-lg">
                     <p className="text-lg font-bold">Elevate Your Run with Our Premium Accessories</p>
                     <button className="mt-4 bg-[#9dc923] text-white px-4 py-2 rounded hover:bg-lime-600">
@@ -65,6 +67,11 @@ const PerformanceHub = () => {
                 />
 
             </div>
+
+          
+
+
+
         </div>
     );
 };

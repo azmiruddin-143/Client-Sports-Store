@@ -24,7 +24,7 @@ const Banner = () => {
                 }}
                 slidesPerView={1}
                 loop={true}
-                className="2xl:h-[850px] md:h-[750px] h-[200px]"
+                className="2xl:h-[850px] md:h-[450px] lg:h-[600px] h-[200px]"
             >
                 <SwiperSlide>
                     <div style={{

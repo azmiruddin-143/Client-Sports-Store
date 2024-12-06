@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { IoIosCloseCircle } from "react-icons/io";
+import sitelogo from '../../assets/site-logo.png'
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { toast } from 'react-toastify';
@@ -46,13 +47,14 @@ const Header = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+    // bg-[#00000092]
 
     return (
         <div
-            className={`sticky top-0 w-full z-40 transition-all duration-300 ${isBlurred ? "bg-[#00000092] backdrop-blur-md " : "bg-base-200"
+            className={`sticky top-0 w-full z-40 transition-all duration-300 ${isBlurred ? "bg-[#9dc92395] backdrop-blur-md " : "bg-base-200"
                 }`}
         >
-            <div className="xl:mx-36 sm:mx-4 ">
+            <div className="2xl:mx-36 xl:mx-24 sm:mx-4 ">
                 <div className="navbar p-1">
                     <div className="navbar-start">
                         <div className="dropdown">
@@ -83,32 +85,35 @@ const Header = () => {
                                     className="menu menu-sm dropdown-content gap-4 bg-base-100 rounded-box z-[1] mt-3 w-44 sm:w-52 py-6 px-2 shadow"
                                 >
                                     <button onClick={() => setIsDropdownOpen(false)}>
-                                        <IoIosCloseCircle className="absolute text-[#3c4483] right-0 top-0" size={30} />
+                                        <IoIosCloseCircle className="absolute text-[#9dc923] right-0 top-0" size={30} />
                                     </button>
                                     <NavLink to="/" onClick={() => setIsDropdownOpen(false)}>Home</NavLink>
-                                    <NavLink to="/about" onClick={() => setIsDropdownOpen(false)}>About</NavLink>
-                                    <NavLink to="/service" onClick={() => setIsDropdownOpen(false)}>Service</NavLink>
+                                    <NavLink to="/allSportsEquipment" onClick={() => setIsDropdownOpen(false)}>All Sports Equipment</NavLink>
                                     {
-                                        user && <NavLink to="/resources" onClick={() => setIsDropdownOpen(false)}>Resources</NavLink>
+                                        user &&  <NavLink to="/addEquipment" onClick={() => setIsDropdownOpen(false)}>Add Equipment</NavLink>
                                     }
-                                    <NavLink to="/myprofile" onClick={() => setIsDropdownOpen(false)}>My Profile</NavLink>
+                                    {
+                                        user && <NavLink to="/myEquipmentList" onClick={() => setIsDropdownOpen(false)}>My Equipment List</NavLink>
+                                    }
+                                    
                                 </ul>
                             )}
                         </div>
-                        <div>
-                            <h1 className={`${isBlurred && "text-white"} sm:text-3xl text-base pl-2 lg:pl-0 lg:text-2xl xl:text-4xl text-[#3c4483] font-bold`}> Sports
-                                <span className="text-[#9dc923] relative sm:right-2 lg:right-1 xl:right-2 right-1 font-bold"> Sphere</span>
+                        <div className='flex items-center gap-0 sm:gap-3'>
+                            <img className='sm:w-[60px] w-[40px] ' src={sitelogo} alt="" />
+                            <h1 className={`${isBlurred && "text-white font-bold"} sm:text-3xl text-base pl-2 lg:pl-0 lg:text-xl xl:text-3xl text-[#3c4483] font-bold`}> Sports
+                                <span className={`${isBlurred && "text-black"} text-[#9dc923] relative sm:right-2 lg:right-1 xl:right-2 right-1 font-bold`}> Sphere</span>
                             </h1>
                         </div>
                     </div>
 
-                    <div className="navbar-center ml-14 xl:ml-28 2xl:ml-0 hidden lg:flex">
-                        <ul className={`${isBlurred ? "text-lg text-white flex gap-3 sm:gap-8" : "text-lg text-black flex gap-3 sm:gap-8"}`}>
+                    <div className="navbar-center  xl:ml-10 2xl:ml-0 hidden lg:flex">
+                        <ul className={`${isBlurred ? "xl:text-lg text-md text-black flex gap-3 sm:gap-8" : "xl:text-lg text-md text-black flex gap-3 sm:gap-8"}`}>
                             <NavLink
                                 to="/"
                                 className={({ isActive }) =>
                                     isActive
-                                        ? `${isBlurred ? "text-[#e09d15] border-b border-[#e09d15]" : "text-[#3c4483] border-b border-[#3c4483]"}`
+                                        ? `${isBlurred ? "text-[white] font-bold border-b border-[white]" : "text-[#73921d] border-b border-[#73921d]"}`
                                         : ""
                                 }
                             >
@@ -118,33 +123,20 @@ const Header = () => {
                                 to="/allSportsEquipment"
                                 className={({ isActive }) =>
                                     isActive
-                                        ? `${isBlurred ? "text-[#e09d15] border-b border-[#e09d15]" : "text-[#3c4483] border-b border-[#3c4483]"}`
+                                        ? `${isBlurred ? "text-[white] font-bold border-b border-[white]" : "text-[#73921d] border-b border-[#73921d]"}`
                                         : ""
                                 }
                             >
                                 All Sports Equipment
                             </NavLink>
-                            {/* <NavLink
-                                to="/addEquipment"
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? `${isBlurred ? "text-[#e09d15] border-b border-[#e09d15]" : "text-[#3c4483] border-b border-[#3c4483]"}`
-                                        : ""
-
-                                }
-                            >
-                               Add Equipment
-                                <Helmet>
-                                    <title>Service | Page</title>
-                                </Helmet>
-                            </NavLink> */}
+                           
                             {
                                 user && <NavLink
                                     to="/addEquipment"
                                     className={({ isActive }) =>
                                         isActive
-                                            ? `${isBlurred ? "text-[#e09d15] border-b border-[#e09d15]" : "text-[#3c4483] border-b border-[#3c4483]"}`
-                                            : ""
+                                           ? `${isBlurred ? "text-[white] font-bold border-b border-[white]" : "text-[#73921d] border-b border-[#73921d]"}`
+                                        : ""
                                     }
                                 >
                                     Add Equipment
@@ -156,8 +148,8 @@ const Header = () => {
                                     to="/myEquipmentList"
                                     className={({ isActive }) =>
                                         isActive
-                                            ? `${isBlurred ? "text-[#e09d15] border-b border-[#e09d15]" : "text-[#3c4483] border-b border-[#3c4483]"}`
-                                            : ""
+                                            ? `${isBlurred ? "text-[white] font-bold border-b border-[white]" : "text-[#73921d] border-b border-[#73921d]"}`
+                                        : ""
                                     }
                                 >
                                     My Equipment List
@@ -196,7 +188,7 @@ const Header = () => {
                                 {user && (
                                     <div style={{ textAlign: "center", marginTop: "0px" }}>
                                         <div className="avatar mt-1 online">
-                                            <div className="sm:max-w-16 rounded-full">
+                                            <div className="sm:max-w-16 max-w-12 rounded-full">
                                                 <img src={user?.photoURL} alt="User Profile"
                                                     data-tooltip-id="image-tooltip"
                                                     data-tooltip-content="azmirkhan"
@@ -213,7 +205,9 @@ const Header = () => {
                             {user ? (
                                 <button
                                     onClick={userLogoutHandler}
-                                    className="bg-[#baf120] text-black text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg"
+                                    className={`${isBlurred && 'bg-[white] text-black text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg'
+                                       
+                                    } bg-[#baf120] text-black text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg`}
                                 >
                                     Logout
                                 </button>

@@ -5,10 +5,8 @@ const Products = () => {
     const productLoader = useLoaderData()
     console.log(productLoader);
     return (
-        <div>
-           
-            <h1>{productLoader.length}</h1>
-            <div className='grid grid-cols-4 place-items-center gap-y-12 mx-32'>
+        <div className='sm:my-16 my-5'>
+            <div className='grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 place-items-center sm:gap-y-5 lg:gap-y-12 lg:mx-5 2xl:mx-32 xl:mx-24'>
                 {
                     productLoader.map(product => <SingleProduct key={product._id} product={product} ></SingleProduct>)
                 }

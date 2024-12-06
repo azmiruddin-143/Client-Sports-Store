@@ -3,8 +3,11 @@ import google from "../../assets/google-icon.png"
 import { IoEyeOff, IoEye } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Register = () => {
-    const { registerUser,myProfileUpdate, googleRegister,setuser} = useContext(authContext)
+    const { registerUser, myProfileUpdate, googleRegister, setuser } = useContext(authContext)
     const [show, setHide] = useState(false)
     const navigate = useNavigate()
 
@@ -19,59 +22,93 @@ const Register = () => {
         const photourl = event.target.photourl.value
         const email = event.target.email.value
         const password = event.target.password.value
-        console.log(trams,name,photourl,email,password);
+        console.log(trams, name, photourl, email, password);
+        if (!/[A-Z]/.test(password)) {
+            toast.error("Must have an Uppercase letter in the password ", {
+                autoClose: 3000,
 
+            });
+            return
+        }
+        if (!/[a-z]/.test(password)) {
+            toast.error("Must have a Lowercase letter in the password  ", {
+                autoClose: 3000,
+
+            });
+            return
+        }
+
+        if (password.length < 6) {
+            toast.error("Password must be at least 6 characters", {
+                autoClose: 3000,
+
+            });
+            return
+        }
+
+
+        if (!trams) {
+            toast.error("terms not checked ", {
+                autoClose: 3000,
+
+            });
+            return
+        }
 
         registerUser(email, password)
-        .then((result) => {
-            const user = result.user
-            setuser(user)
-             console.log(user);
-             navigate("/")
-              // update Profile//
-              myProfileUpdate({ displayName: name, photoURL: photourl })
-              .then(() => {
-                  
-                  setuser({ ...result.user, displayName: name, photoURL: photourl })
-                  
-                  toast.success("Registration successful!", {
-                      autoClose: 3000,
-                  });
-                  event.target.reset(); 
-              })
-              .catch((error) => {
-                  toast.error(`Update failed: ${error.message}`, {
-                      autoClose: 3000,
-                  });
-              })
+            .then((result) => {
+                const user = result.user
+                setuser(user)
+                navigate("/")
+                // update Profile//
+                myProfileUpdate({ displayName: name, photoURL: photourl })
+                    .then(() => {
 
-           })
+                        setuser({ ...result.user, displayName: name, photoURL: photourl })
 
+                        toast.success("Registration successful!", {
+                            autoClose: 3000,
+                        });
+                        event.target.reset();
+                    })
+                    .catch((error) => {
+                        toast.error(`Update failed: ${error.message}`, {
+                            autoClose: 3000,
+                        });
+                    })
+
+            })
 
 
-        .catch((error) => {
-            console.log(error.message);
-        })
+
+            .catch((error) => {
+                toast.error(`Update failed: ${error.message}`, {
+                    autoClose: 3000,
+                });
+            })
 
 
     }
 
-    const googleRegisterHandler = ()=>{
+    const googleRegisterHandler = () => {
         googleRegister()
             .then((result) => {
                 const user = result.user
                 setuser(user)
-                console.log(user);
+                toast.success("Registration successful!", {
+                    autoClose: 3000,
+                });
             })
             .catch((error) => {
                 console.log(error.message);
             })
-     }
+    }
 
 
 
     return (
         <div>
+           
             <div className="sm:my-10 my-5 ">
                 <div className="hero-content flex-col mx-auto lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
@@ -99,7 +136,7 @@ const Register = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type={`${show ? "text" : "password"}`} name='password' placeholder=" Enter your name password" className="input input-bordered" required />
-                                
+
 
                                 <div onClick={eyeIconHandler}>
                                     {
@@ -123,8 +160,8 @@ const Register = () => {
                             </div>
 
                             <div className="divider">OR</div>
-                            <div onClick={googleRegisterHandler}  className='mx-auto'>
-                                <img className='w-[30px]' src={google}  alt="" />
+                            <div onClick={googleRegisterHandler} className='mx-auto'>
+                                <img className='w-[30px]' src={google} alt="" />
                             </div>
                             <h1 className='text-lg text-center'>Already a user ? <Link to="/login" className='text-[#e09d15]'>Login</Link></h1>
                         </form>

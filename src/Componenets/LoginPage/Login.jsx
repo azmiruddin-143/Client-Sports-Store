@@ -3,6 +3,8 @@ import google from "../../assets/google-icon.png"
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { loginUser, googleRegister, setuser } = useContext(authContext)
@@ -21,18 +23,30 @@ const Login = () => {
         const trams = event.target.trams.checked
         // register setup ///
 
+        if(!trams){
+            toast.error("terms not checked ", {
+                autoClose: 3000, 
+
+            });
+            return
+        }
 
         loginUser(email, password)
             .then((result) => {
                 const user = result.user
                 setuser(user)
-                setuser({ ...result.user,  photoURL: photourl })
+                toast.success("Login successful!", {
+                    autoClose: 3000,
+                });
+                // setuser({ ...result.user,  photoURL: photourl })
                 navigate(location?.state ? location.state : "/")
-                console.log(user);
+                
             })
 
             .catch((error) => {
-                console.log(error.message);
+                toast.error(`login failed: ${error.message}`, {
+                    autoClose: 3000,
+                });
             })
     }
 
@@ -43,15 +57,21 @@ const Login = () => {
             .then((result) => {
                 const user = result.user
                 setuser(user)
+                toast.success("Login successful!", {
+                    autoClose: 3000,
+                });
                 navigate(location?.state ? location.state : "/")
-                console.log(user);
+               
             })
             .catch((error) => {
-                console.log(error.message);
+                toast.error(`login failed: ${error.message}`, {
+                    autoClose: 3000,
+                });
             })
     }
     return (
         <div>
+          
             <div className="sm:my-10 my-5 ">
                 <div className="hero-content flex-col mx-auto lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">

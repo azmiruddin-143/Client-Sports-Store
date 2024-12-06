@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { authContext } from '../AuthProvider/AuthProvider';
 import SingleEquipment from './SingleEquipment';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 const MyEquipment = () => {
     const { user } = useContext(authContext)
 
@@ -31,21 +31,70 @@ const MyEquipment = () => {
 
 
     // Handle delete function
-    const handleDelete = (id) => {
-        fetch(`http://localhost:5000/myequipment/${id}`, {
-            method: "DELETE",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.deletedCount > 0) {
-                    // Remove the deleted item from the state
+    // const handleDelete = (id) => {
+    //     fetch(`http://localhost:5000/myequipment/${id}`, {
+    //         method: "DELETE",
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             if (data.deletedCount > 0) {
+    //                 // Remove the deleted item from the state
+    //                 const remainingEquipments = equipment.filter(
+    //                     (equipment) => equipment._id !== id
+    //                 );
+    //                 setEquipment(remainingEquipments);
+    //             }
+    //         });
+    // };
+
+// others
+
+
+
+const handleDelete = (id) => {
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#9dc923",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            fetch(`http://localhost:5000/myequipment/${id}`, {
+                method: "DELETE",
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your Equipment has been deleted.",
+                            icon: "success"
+                        });
+                    }
+
                     const remainingEquipments = equipment.filter(
                         (equipment) => equipment._id !== id
                     );
                     setEquipment(remainingEquipments);
-                }
-            });
-    };
+
+                })
+
+        }
+    });
+
+
+}
+
+
+
+
 
     return (
         <div>

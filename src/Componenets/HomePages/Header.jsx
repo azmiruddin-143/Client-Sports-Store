@@ -3,8 +3,8 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { IoIosCloseCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { Helmet } from 'react-helmet-async';
 import { authContext } from '../AuthProvider/AuthProvider';
 
@@ -19,13 +19,13 @@ const Header = () => {
     const userLogoutHandler = () => {
         userLogout()
             .then(() => {
-                // toast.success("Logout successful!", { autoClose: 3000 });
+                toast.success("Logout successful!", { autoClose: 3000 });
                 navigate("/");
             })
             .catch((error) => {
-                // toast.error(`login failed: ${error.message}`, {
-                //     autoClose: 3000,
-                // });
+                toast.error(`login failed: ${error.message}`, {
+                    autoClose: 3000,
+                });
                 console.log(error.message);
             });
 

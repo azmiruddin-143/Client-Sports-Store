@@ -3,6 +3,7 @@ import { authContext } from '../AuthProvider/AuthProvider';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Update = () => {
     const updateLoader = useLoaderData()
@@ -54,10 +55,15 @@ const Update = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.modifiedCount > 0) {
-                    navigate("/")
+                    Swal.fire({
+                        title: "Update SuccessFull",
+                        text: "Your Equipment has been updated",
+                        icon: "success"
+                    });
+                    navigate("/myEquipmentList")
                 }
+                
             })
 
 

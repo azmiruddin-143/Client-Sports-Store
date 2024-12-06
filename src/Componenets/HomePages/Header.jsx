@@ -52,7 +52,7 @@ const Header = () => {
             className={`sticky top-0 w-full z-40 transition-all duration-300 ${isBlurred ? "bg-[#00000092] backdrop-blur-md " : "bg-base-200"
                 }`}
         >
-            <div className="xl:mx-48 sm:mx-4 ">
+            <div className="xl:mx-36 sm:mx-4 ">
                 <div className="navbar p-1">
                     <div className="navbar-start">
                         <div className="dropdown">

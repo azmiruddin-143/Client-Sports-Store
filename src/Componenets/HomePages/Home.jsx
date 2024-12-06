@@ -18,8 +18,8 @@ const Home = () => {
             {/* <Animation></Animation> */}
             <SportsCategory></SportsCategory>
             <Products></Products>
-            {/* <PerformanceHub></PerformanceHub> */}
-            {/* <TrendingProducts></TrendingProducts> */}
+            <PerformanceHub></PerformanceHub>
+            <TrendingProducts></TrendingProducts>
             {/* <AthleticIntro></AthleticIntro> */}
             {/* <CustomerBenefits></CustomerBenefits> */}
         </div>

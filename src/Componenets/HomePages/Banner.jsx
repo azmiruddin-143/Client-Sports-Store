@@ -1,19 +1,71 @@
 import React from 'react';
-import bannerFootball from "../../assets/banner.jpg"
-
-
+import FootballBaner from "../../assets/Football-Baner.png"
+import BasketballBanner from "../../assets/Basketball-Banner.png"
+import TennisbatBaner from "../../assets/Tennisbat-Baner.png"
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 const Banner = () => {
     return (
-        <div style={{
-            backgroundImage: `url(${bannerFootball})`, backgroundColor: "#3c448384",
-            backgroundBlendMode: "multiply"
-          }} className="bg-cover  bg-no-repeat bg-right w-full h-[800px] justify-end " >
-             {/* <div className='space-y-4 w-[50%]'>
-                 <h1 className='text-2xl'>Football</h1>
-                 <p className='w-8/12 text-5xl leading-tight'>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
-                 <button className='bg-red-700 py-2 px-5 my-4'>Shop Now</button>
-             </div> */}
-        
+        <div className="w-full relative">
+            <Swiper
+                modules={[Navigation, Autoplay]}
+                navigation={{
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+
+                }}
+
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                slidesPerView={1}
+                loop={true}
+                className="2xl:h-[850px] md:h-[750px] h-[200px]"
+            >
+                <SwiperSlide>
+                    <div style={{
+                        backgroundImage: `url(${BasketballBanner})`, backgroundColor: "#3c448384",
+                        backgroundBlendMode: "multiply"
+                    }} className="bg-cover  bg-no-repeat bg-center w-full h-full ">
+
+                    </div>
+
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div style={{
+                        backgroundImage: `url(${TennisbatBaner})`, backgroundColor: "#3c448384",
+                        backgroundBlendMode: "multiply"
+                    }} className="bg-cover bg-no-repeat bg-center w-full h-full ">
+
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div style={{
+                        backgroundImage: `url(${FootballBaner})`, backgroundColor: "#3c448384",
+                        backgroundBlendMode: "multiply"
+                    }} className="bg-cover bg-no-repeat bg-center w-full h-full ">
+
+                    </div>
+                </SwiperSlide>
+
+                
+
+
+            </Swiper>
+
+
+            <div className="swiper-button-prev bg-[white] cursor-pointer  rounded-full  px-[22px] md:p-6 flex justify-center items-center">
+                <FaArrowLeft />
+            </div>
+
+            <div className="swiper-button-next  cursor-pointer bg-[white] rounded-full px-[22px] w-fit  md:p-6 flex justify-center items-center">
+                <FaArrowRight />
+            </div>
+
         </div>
     );
 };

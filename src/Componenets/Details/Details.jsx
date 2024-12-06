@@ -58,7 +58,11 @@ const Details = () => {
                 </div>
             </div>
 
-             <h1 className=' w-4/12 mx-auto pl-2'> Customer Note: {note}</h1>
+            <h1 className=' w-4/12 mx-auto pl-2'> Customer Note: {note}</h1>
+
+
+           
+
         </div>
 
     );

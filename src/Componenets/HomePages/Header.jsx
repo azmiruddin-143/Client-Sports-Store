@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { IoIosCloseCircle } from "react-icons/io";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 // import { toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // import { Helmet } from 'react-helmet-async';
@@ -50,7 +52,7 @@ const Header = () => {
             className={`sticky top-0 w-full z-40 transition-all duration-300 ${isBlurred ? "bg-[#00000092] backdrop-blur-md " : "bg-base-200"
                 }`}
         >
-            <div className="xl:mx-24 sm:mx-4 ">
+            <div className="xl:mx-48 sm:mx-4 ">
                 <div className="navbar p-1">
                     <div className="navbar-start">
                         <div className="dropdown">
@@ -94,8 +96,8 @@ const Header = () => {
                             )}
                         </div>
                         <div>
-                            <h1 className={`${isBlurred && "text-white"} sm:text-3xl text-base pl-2 lg:pl-0 lg:text-2xl xl:text-4xl text-[#3c4483] font-bold`}> Sports 
-                             <span className="text-[#e09d15] relative sm:right-2 lg:right-1 xl:right-2 right-1 font-bold"> Sphere</span>
+                            <h1 className={`${isBlurred && "text-white"} sm:text-3xl text-base pl-2 lg:pl-0 lg:text-2xl xl:text-4xl text-[#3c4483] font-bold`}> Sports
+                                <span className="text-[#9dc923] relative sm:right-2 lg:right-1 xl:right-2 right-1 font-bold"> Sphere</span>
                             </h1>
                         </div>
                     </div>
@@ -120,7 +122,7 @@ const Header = () => {
                                         : ""
                                 }
                             >
-                               All Sports Equipment
+                                All Sports Equipment
                             </NavLink>
                             {/* <NavLink
                                 to="/addEquipment"
@@ -148,45 +150,76 @@ const Header = () => {
                                     Add Equipment
                                 </NavLink>
                             }
-                             
-                             {
+
+                            {
                                 user && <NavLink
-                                to="/myEquipmentList"
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? `${isBlurred ? "text-[#e09d15] border-b border-[#e09d15]" : "text-[#3c4483] border-b border-[#3c4483]"}`
-                                        : ""
-                                }
-                            >
-                                My Equipment List
-                            </NavLink>
-                             }
+                                    to="/myEquipmentList"
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? `${isBlurred ? "text-[#e09d15] border-b border-[#e09d15]" : "text-[#3c4483] border-b border-[#3c4483]"}`
+                                            : ""
+                                    }
+                                >
+                                    My Equipment List
+                                </NavLink>
+                            }
                         </ul>
                     </div>
                     <div className="navbar-end">
                         <div className="flex gap-0 sm:gap-4 items-center">
+                            {/* trogole dark and ligth */}
+
+                            <label className="swap swap-rotate">
+                                {/* this hidden checkbox controls the state */}
+                                <input type="checkbox" className="theme-controller" value="dark" />
+
+                                {/* sun icon */}
+                                <svg
+                                    className="swap-off h-10 w-10 fill-current"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+                                </svg>
+
+                                {/* moon icon */}
+                                <svg
+                                    className="swap-on h-10 w-10 fill-current"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+                                </svg>
+                            </label>
+                           
                             <div className="relative flex justify-center items-center group w-[70px] h-[70px]">
                                 {user && (
-                                    <div className="avatar mt-1 online">
-                                        <div className="sm:max-w-16  rounded-full">
-                                            <img  src={user?.photoURL} alt="User Profile" />
+                                    <div style={{ textAlign: "center", marginTop: "0px" }}>
+                                        <div className="avatar mt-1 online">
+                                            <div className="sm:max-w-16 rounded-full">
+                                                <img src={user?.photoURL} alt="User Profile"
+                                                    data-tooltip-id="image-tooltip"
+                                                    data-tooltip-content="azmirkhan"
+                                                    style={{ cursor: "pointer" }}
+                                                />
+                                            </div>
                                         </div>
+                                        <Tooltip id="image-tooltip" place="top" style={{ backgroundColor: "#333" }} />
                                     </div>
+
                                 )}
-                                <span className={`${isBlurred && "text-white"} absolute inset-0 bg-opacity-70 text-black -top-2 -left-44 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                                    {user?.displayName}
-                                </span>
+
                             </div>
                             {user ? (
                                 <button
                                     onClick={userLogoutHandler}
-                                    className="bg-[#e09d15] text-white text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg"
+                                    className="bg-[#baf120] text-black text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg"
                                 >
                                     Logout
                                 </button>
                             ) : (
                                 <Link to="/login">
-                                    <button className="bg-[#e09d15] text-white font-semibold text-base sm:text-lg py-1 px-2 sm:py-2 sm:px-6 rounded-lg">
+                                    <button className="bg-[#baf120] text-black font-semibold text-base sm:text-lg py-1 px-2 sm:py-2 sm:px-6 rounded-lg">
                                         Login
                                     </button>
                                 </Link>

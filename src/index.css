@@ -8,3 +8,40 @@
   border-radius: 10px;
 
 }
+
+
+
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+.active {
+    color: #e09d15;
+    border-bottom: 1px solid #e09d15 ;
+    width: fit-content;
+}
+
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 20px !important; 
+    color: #9dc923;        
+    font-weight: bolder;       
+}
+
+@media screen and (max-width: 575px) {
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 14px !important; 
+        color: white;               
+        font-weight: bolder;     
+       
+    }
+}
+
+:root {
+    --swiper-pagination-color: #3c4483; 
+}
+.swiper-pagination-bullet-active {
+    opacity: var(--swiper-pagination-bullet-opacity, 1);
+    background: #3c4483; 
+}

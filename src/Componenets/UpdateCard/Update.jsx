@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Fade } from 'react-awesome-reveal';
 
 const Update = () => {
     const updateLoader = useLoaderData()
@@ -69,6 +70,7 @@ const Update = () => {
 
     }
     return (
+        <Fade duration={2000} triggerOnce>
         <div className='my-10 mx-10 '>
             <form onSubmit={addEquipmentForm} className='max-w-4xl mx-auto' action="">
                 <div className=' sm:flex gap-5'>
@@ -168,6 +170,7 @@ const Update = () => {
                 </div>
             </form>
         </div>
+        </Fade>
     );
 };
 

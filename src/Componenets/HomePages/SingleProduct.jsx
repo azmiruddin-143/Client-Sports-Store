@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 
@@ -21,7 +22,8 @@ const SingleProduct = ({ product }) => {
 
                 {/* <!-- Product Info --> */}
                 <div class="p-2">
-                    <h2 class="text-lg font-semibold text-gray-800">{productName}</h2>
+                    {/* <h2 class="text-lg font-semibold text-gray-800">{productName}</h2> */}
+                    <Fade duration={500} cascade triggerOnce class="text-lg font-semibold text-gray-800">{productName}</Fade>
                     <p class="text-sm text-gray-600">{category}</p>
 
                     {/* <!-- Price Section --> */}

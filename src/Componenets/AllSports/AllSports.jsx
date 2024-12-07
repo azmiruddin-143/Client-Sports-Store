@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+
 import { useLoaderData } from 'react-router-dom';
 import SingleSports from './SingleSports';
 import { Fade } from 'react-awesome-reveal';
 import { Helmet } from 'react-helmet-async';
+import { useState } from 'react';
 
 const AllSports = () => {
     const allproductLoader = useLoaderData()
     const [sortedProducts, setSortedProducts] = useState(allproductLoader);
-    const [isSorted, setIsSorted] = useState(false);
-
-    // Sort Button Handler
+    const [isSorted,setisSorted] = useState(false)
     const handleSort = () => {
-        const sorted = [...sortedProducts].sort((a, b) => a.price - b.price); // Sort by price (Ascending)
-        setSortedProducts(sorted); // Update state with sorted data
-        setIsSorted(true);
+        fetch("http://localhost:5000/sportSort")
+            .then(res => res.json())
+            .then(data => setSortedProducts(data)) 
+            setisSorted(true)
     };
-    const handleDefault = () => {
-        setSortedProducts(allproductLoader); // Reset to default data
-        setIsSorted(false); // Mark as default
-    };
+
+    const handleDefault = () =>{
+        setSortedProducts(allproductLoader)
+        setisSorted(false)
+    }
+    
     return (
         <Fade duration={2000} triggerOnce>
              <Helmet>
               <title>Sports Sphere | All Equipment</title>
             </Helmet>
             <div className='my-10'>
+      
                 {
                     !isSorted ? <div className='flex mx-auto my-4 justify-center'>
                         <button onClick={handleSort} className='bg-[#baf120] py-2 px-6 rounded-md'>Sort all price</button>

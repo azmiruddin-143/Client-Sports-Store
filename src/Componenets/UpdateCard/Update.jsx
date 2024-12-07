@@ -9,6 +9,7 @@ import { Helmet } from 'react-helmet-async';
 
 const Update = () => {
     const updateLoader = useLoaderData()
+    console.log(updateLoader);
     const { _id, image, productName, category, selectedDates, description, price, rating, quantity, note } = updateLoader
     const { user } = useContext(authContext)
     const navigate = useNavigate()
@@ -17,12 +18,13 @@ const Update = () => {
     const [selectedDate, setSelectedDate] = useState(null);
 
     useEffect(() => {
-        const defaultDateFromDB = selectedDates; 
+        console.log(selectedDates); 
+        const defaultDateFromDB = updateLoader.selectedDate; 
         if (defaultDateFromDB) {
             const formattedDate = new Date(defaultDateFromDB); 
             setSelectedDate(formattedDate);
         }
-    }, []);
+    }, [updateLoader]);
 
     const handleDateChange = (date) => {
         if (date) {

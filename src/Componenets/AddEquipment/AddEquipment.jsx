@@ -5,9 +5,10 @@ import Swal from 'sweetalert2'
 import { authContext } from '../AuthProvider/AuthProvider';
 import { Fade } from 'react-awesome-reveal';
 import { Helmet } from 'react-helmet-async';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 const AddEquipment = () => {
     const { user } = useContext(authContext)
-    // const [rating, setRating] = useState("");
     const [selectedDate, setSelectedDate] = useState("");
     const handleDateChange = (date) => {
         if (date) {
@@ -20,9 +21,7 @@ const AddEquipment = () => {
         }
     };
 
-    // const handleRatingChange = (e) => {
-    //     setRating(e.target.value);
-    // };
+   
 
     const addEquipmentForm = (e) => {
         e.preventDefault()
@@ -41,6 +40,19 @@ const AddEquipment = () => {
         console.log(equipmentObject);
 
 
+        if (!image.includes('.png') && !image.includes('.jpg')) {
+            toast.error("Enter the correct image URL", {
+                autoClose: 3000,
+            });
+            return;
+        }
+        if(quantity > 5){
+            toast.error("Product Stock Out", {
+                autoClose: 3000, 
+
+            });
+            return
+        }
 
         fetch("http://localhost:5000/sports", {
             method: "POST",
@@ -65,12 +77,10 @@ const AddEquipment = () => {
                     from.category.value = "";
                     from.rating.value = "";
 
-
                 }
             })
 
     }
-
 
 
     return (

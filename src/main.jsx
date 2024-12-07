@@ -17,12 +17,14 @@ import Register from './Componenets/RegisterPage/Register';
 import AuthProvider from './Componenets/AuthProvider/AuthProvider';
 import PrivateRoot from './Componenets/PrivateRoot/PrivateRoot';
 import Update from './Componenets/UpdateCard/Update';
+import Error from './Componenets/404Page/Error';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement: <h1 className='text-red-700 text-4xl'>Error 404</h1>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -65,9 +67,13 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
+
   <AuthProvider>
-    <StrictMode>
-      <RouterProvider router={router} />
-    </StrictMode>
+    <HelmetProvider>
+      <StrictMode>
+        <RouterProvider router={router} />
+      </StrictMode>
+    </HelmetProvider>
+
   </AuthProvider>
 )

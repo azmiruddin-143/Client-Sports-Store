@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import SingleSports from './SingleSports';
 import { Fade } from 'react-awesome-reveal';
+import { Helmet } from 'react-helmet-async';
 
 const AllSports = () => {
     const allproductLoader = useLoaderData()
@@ -20,6 +21,9 @@ const AllSports = () => {
     };
     return (
         <Fade duration={2000} triggerOnce>
+             <Helmet>
+              <title>Sports Sphere | All Equipment</title>
+            </Helmet>
             <div className='my-10'>
                 {
                     !isSorted ? <div className='flex mx-auto my-4 justify-center'>

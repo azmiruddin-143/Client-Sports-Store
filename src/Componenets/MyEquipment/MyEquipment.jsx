@@ -4,6 +4,7 @@ import SingleEquipment from './SingleEquipment';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Fade } from 'react-awesome-reveal';
+import { Helmet } from 'react-helmet-async';
 const MyEquipment = () => {
     const { user } = useContext(authContext)
 
@@ -96,6 +97,9 @@ const MyEquipment = () => {
 
     return (
         <Fade duration={2000} triggerOnce>
+             <Helmet>
+              <title>Sports Sphere | My Equipment</title>
+            </Helmet>
             <div>
 
                 {

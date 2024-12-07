@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
     const { loginUser, googleRegister, setuser } = useContext(authContext)
@@ -71,7 +72,9 @@ const Login = () => {
     }
     return (
         <div>
-          
+           <Helmet>
+              <title>Sports Sphere | Login</title>
+            </Helmet>
             <div className="sm:my-10 my-5 ">
                 <div className="hero-content flex-col mx-auto lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">

@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from 'sweetalert2'
 import { authContext } from '../AuthProvider/AuthProvider';
 import { Fade } from 'react-awesome-reveal';
+import { Helmet } from 'react-helmet-async';
 const AddEquipment = () => {
     const { user } = useContext(authContext)
     // const [rating, setRating] = useState("");
@@ -74,6 +75,9 @@ const AddEquipment = () => {
 
     return (
         <Fade duration={2000} triggerOnce>
+             <Helmet>
+              <title>Sports Sphere | Add Equipment</title>
+            </Helmet>
 
             <div className='my-10 mx-10 '>
                 <form onSubmit={addEquipmentForm} className='max-w-4xl mx-auto' action="">

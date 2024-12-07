@@ -1,5 +1,6 @@
 import React from 'react';
 import { Fade } from 'react-awesome-reveal';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 import ReactStars from 'react-stars';
 
@@ -9,15 +10,18 @@ const Details = () => {
 
     return (
         <Fade duration={2000} triggerOnce>
-            <div className='my-10'>
+             <Helmet>
+              <title>Sports Sphere | Details</title>
+            </Helmet>
+            <div className='my-10 mx-2 sm:mx-0'>
 
-                <div class="max-w-xl mx-auto my-5 p-4 bg-white border rounded-lg shadow-md flex flex-col md:flex-row gap-0">
+                <div class="sm:max-w-xl  max-w-sm  mx-auto my-5 p-4 bg-white border rounded-lg shadow-md flex flex-col md:flex-row gap-0">
                     {/* <!-- Left Side (Image) --> */}
-                    <div class="w-full md:w-2/3 relative -left-10">
+                    <div class="w-full md:w-2/3 relative sm:-left-10">
                         <img
                             src={image}
                             alt="Product Image"
-                            class="rounded-md w-full h-full object-cover"
+                            class="rounded-md sm:w-full h-full object-cover"
                         />
                     </div>
                     {/* <!-- Right Side (Details) --> */}
@@ -64,7 +68,7 @@ const Details = () => {
                 
 
                 {
-                    note ? <h1 className=' w-4/12 mx-auto pl-2'> Customer Note: {note}</h1> : ""
+                    note ? <h1 className=' sm:w-10/12 lg:w-7/12 xl:w-5/12  2xl:w-4/12 mx-auto px-2 sm:pl-2'> Customer Note: {note}</h1> : ""
                 }
 
             </div>

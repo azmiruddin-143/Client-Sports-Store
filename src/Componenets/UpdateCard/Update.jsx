@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Fade } from 'react-awesome-reveal';
+import { Helmet } from 'react-helmet-async';
 
 const Update = () => {
     const updateLoader = useLoaderData()
@@ -71,6 +72,9 @@ const Update = () => {
     }
     return (
         <Fade duration={2000} triggerOnce>
+             <Helmet>
+              <title>Sports Sphere | Update</title>
+            </Helmet>
         <div className='my-10 mx-10 '>
             <form onSubmit={addEquipmentForm} className='max-w-4xl mx-auto' action="">
                 <div className=' sm:flex gap-5'>
